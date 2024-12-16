@@ -4,26 +4,20 @@
 #
 ################################################################################i
 
-HAILORT_VERSION = 4.19.0
-HAILORT_SITE =  $(call github,hailo-ai,hailort,v$(HAILORT_VERSION))
+HAILORT_VERSION = v4.19.0
+HAILORT_SITE = https://github.com/hailo-ai/hailort.git
+HAILORT_SITE_METHOD = git
+HAILORT_GIT_SUBMODULES = YES
 HAILORT_LICENSE = MIT
 HAILORT_LICENSE_FILES = hailort/LICENSE
+HAILORT_SUPPORTS_IN_SOURCE_BUILD = NO
 
-HAILORT_DEPENDENCIES = host-cmake
+HAILORT_DEPENDENCIES = spdlog protobuf eigen
 
-
-define HAILORT_CONFIGURE_CMDS
-	$(CMAKE_MAKE_ENV) $(HOST_DIR)/bin/cmake -S$(@D) -B$(@D)/build \
-		$(CMAKE_CONF_OPTS) \
-		-DCMAKE_BUILD_TYPE=Release
-endef
-
-define HAILORT_BUILD_CMDS
-	$(CMAKE_MAKE_ENV) $(MAKE) -C $(@D)/build
-endef
-
-define HAILORT_INSTALL_TARGET_CMDS
-	$(CMAKE_MAKE_ENV) DESTDIR=$(TARGET_DIR) $(MAKE) -C $(@D)/build install
-endef
+HAILORT_CONF_OPTS += -DCMAKE_TOOLCHAIN_FILE=$(CMAKE_TOOLCHAIN_FILE)
+HAILORT_CONF_OPTS += -DCMAKE_INSTALL_PREFIX=$(TARGET_DIR)
+HAILORT_CONF_OPTS += -DEigen3_DIR=$(STAGING_DIR)/usr/share/eigen3/cmake
+HAILORT_CONF_OPTS += -DSPDLOG_DIR=$(STAGING_DIR)/usr
+HAILORT_CONF_OPTS += -DPROTOBUF_DIR=$(STAGING_DIR)/usr
 
 $(eval $(cmake-package))
