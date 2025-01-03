@@ -4,8 +4,8 @@
 #
 ################################################################################i
 
-HAILORT_VERSION = v4.19.0
-HAILORT_SITE = https://github.com/hailo-ai/hailort.git
+HAILORT_VERSION = v4.20.0-nerves-fix
+HAILORT_SITE = https://github.com/cocoa-xu/hailort.git
 HAILORT_SITE_METHOD = git
 HAILORT_GIT_SUBMODULES = YES
 HAILORT_LICENSE = MIT
