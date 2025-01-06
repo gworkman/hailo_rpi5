@@ -4,7 +4,7 @@
 #
 ################################################################################i
 
-HAILORT_VERSION = v4.20.0-nerves-fix
+HAILORT_VERSION = v4.20.0-nerves-fix2
 HAILORT_SITE = https://github.com/cocoa-xu/hailort.git
 HAILORT_SITE_METHOD = git
 HAILORT_GIT_SUBMODULES = YES
